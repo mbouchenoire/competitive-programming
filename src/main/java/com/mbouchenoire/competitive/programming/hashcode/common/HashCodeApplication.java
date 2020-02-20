@@ -21,6 +21,10 @@ public class HashCodeApplication {
         final ClassLoader classLoader = Application.class.getClassLoader();
         final String inputFolderPath = "hashcode/" + session.getPhase().getName() + session.getYear() + "/input";
         final URL resource = classLoader.getResource(inputFolderPath);
+
+        if (resource == null)
+            throw new IllegalStateException("Missing input files (*.in within the /resources/*/input folder)");
+
         final File inputFolder = new File(Objects.requireNonNull(resource).getFile());
 
         int finalScore = 0;

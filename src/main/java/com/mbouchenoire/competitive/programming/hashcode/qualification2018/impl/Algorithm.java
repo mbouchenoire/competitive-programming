@@ -7,10 +7,9 @@ import com.mbouchenoire.competitive.programming.hashcode.qualification2018.model
 import com.mbouchenoire.competitive.programming.hashcode.qualification2018.model.Ride;
 import com.mbouchenoire.competitive.programming.hashcode.qualification2018.model.Vehicule;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static jdk.nashorn.internal.objects.NativeMath.max;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Algorithm implements HashCodeAlgorithm<InputValue> {
 
@@ -36,23 +35,11 @@ public class Algorithm implements HashCodeAlgorithm<InputValue> {
 
     private static Optional<Ride> findBestRide(Vehicule vehicule, List<Ride> rides, int bonus) {
         return rides.stream()
-                .filter(ride -> !ride.isBooked() && vehicule.canRide(ride))
-//                .max(Comparator.comparingLong(o -> vehicule.score(o, bonus)));
-                .sorted((o1, o2) -> {
+                .filter(ride -> !ride.isBooked() && vehicule.canRide(ride)).min((o1, o2) -> {
                     final long score1 = vehicule.score(o1, bonus);
                     final long score2 = vehicule.score(o2, bonus);
-
-                    if (score1 != score2) {
-                        return Integer.
-                    }
-                })
-                .findFirst();
-//        final List<Ride> collect = rides.stream()
-//                .filter(ride -> !ride.isBooked() && vehicule.canRide(ride))
-//                .sorted(Comparator.comparingLong(o -> vehicule.score(o, bonus)))
-//                .collect(Collectors.toList());
-//
-//        return Optional.of(collect.get(0));
+                    return 0; // TODO
+                });
     }
 
     private HashCodeSolution buildOutput(List<Vehicule> vehicules) {
